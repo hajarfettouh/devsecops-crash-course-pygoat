@@ -1,4 +1,4 @@
-name: Bandit SAST Workflow
+name: Bandit SAST
 
 on:
   push:
@@ -9,19 +9,19 @@ on:
       - main
 
 jobs:
-  bandit_scan:
+  bandit-scan:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.8'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
 
-    - name: Install Bandit
-      run: pip install bandit
+      - name: Install Bandit
+        run: pip install bandit
 
-    - name: Run Bandit
-      run: bandit -r .
+      - name: Run Bandit
+        run: bandit -r .
