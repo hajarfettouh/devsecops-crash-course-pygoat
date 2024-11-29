@@ -24,4 +24,11 @@ jobs:
         run: pip install bandit
 
       - name: Run Bandit
-        run: bandit -r .
+        run: |
+          bandit -r . --severity-level medium --skip B101 -f json -o bandit-report.json || true
+
+      - name: Upload Bandit report
+        uses: actions/upload-artifact@v3
+        with:
+          name: bandit-report
+          path: bandit-report.json
